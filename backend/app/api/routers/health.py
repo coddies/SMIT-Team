@@ -8,6 +8,16 @@ from app.db.session import get_db
 router = APIRouter(tags=["health"])
 
 
+@router.get("/")
+def root():
+    return {"status": "ok", "message": "FinishAI API is running"}
+
+
+@router.get("/ping")
+def ping():
+    return {"status": "ok", "message": "pong"}
+
+
 @router.get("/health")
 def health(db: Session = Depends(get_db)):
     try:
@@ -15,3 +25,4 @@ def health(db: Session = Depends(get_db)):
     except Exception as exc:
         raise APIError(503, "INTERNAL", "Database unavailable") from exc
     return {"status": "ok", "db": "ok"}
+

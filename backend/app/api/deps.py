@@ -23,6 +23,6 @@ def client_ip(request: Request) -> str:
 
 
 def enforce_ip_limit(request: Request, db: Session = Depends(get_db)):
-    if request.url.path == "/health":
+    if request.url.path in ("/health", "/ping", "/"):
         return
     enforce_rate_limits(db, client_ip(request))
