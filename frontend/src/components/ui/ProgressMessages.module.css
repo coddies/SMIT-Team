@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-12) var(--space-4);
+  text-align: center;
+}
+
+.message {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-subtle);
+  animation: fadeIn var(--transition-slow) ease both;
+  max-width: 320px;
+}
