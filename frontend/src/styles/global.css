@@ -1,0 +1,437 @@
+/* ============================================================
+   FinishAI — Global Styles
+   Minimal reset + base typographic rhythm
+   ============================================================ */
+
+@import './tokens.css';
+@import './components.css';
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Focus ───────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Typography ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p {
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-subtle);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Inputs ──────────────────────────────────────────────── */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ── Images ──────────────────────────────────────────────── */
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+/* ── Utility classes ─────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-slow) ease both;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--transition-slow) ease both;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease infinite;
+}
+
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+
+/* ================================================================
+   MOBILE RESPONSIVE SYSTEM — Full Coverage
+   Breakpoints: mobile ≤480, tablet ≤768, desktop >768
+   ================================================================ */
+
+/* ── Responsive Utilities ─────────────────────────────────── */
+.hide-mobile { display: initial; }
+.show-mobile { display: none; }
+
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: flex !important; }
+  .mobile-col  { flex-direction: column !important; align-items: stretch !important; }
+  .mobile-full { width: 100% !important; }
+  .mobile-text-center { text-align: center !important; }
+  .mobile-gap-sm { gap: var(--space-3) !important; }
+}
+
+/* ── Mobile Navbar ────────────────────────────────────────── */
+.nav-mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-6);
+  gap: var(--space-4);
+  z-index: 49;
+  box-shadow: var(--shadow-md);
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-subtle);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.nav-mobile-menu a:last-child { border-bottom: none; }
+
+/* ── Hamburger ────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  padding: 0;
+}
+.hamburger span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-desktop { display: none !important; }
+  .btn-desktop { display: none !important; }
+}
+
+/* ================================================================
+   PAGE-LEVEL RESPONSIVE OVERRIDES
+   ================================================================ */
+
+/* ── Typography scaling ───────────────────────────────────── */
+@media (max-width: 768px) {
+  h1 { font-size: var(--text-2xl) !important; }
+  h2 { font-size: var(--text-xl) !important; }
+  h3 { font-size: var(--text-lg) !important; }
+}
+
+/* ── Container tighter on mobile ──────────────────────────── */
+@media (max-width: 480px) {
+  .container { padding-inline: var(--space-4); }
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .card { padding: var(--space-4); border-radius: var(--radius-md); }
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .btn-lg {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+  }
+  /* Full-width buttons on very small screens */
+  .btn-full-mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Landing Page ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hero section */
+  .landing-hero {
+    padding: var(--space-12) 0 var(--space-10) !important;
+  }
+  .landing-hero h1 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
+    letter-spacing: -0.02em !important;
+  }
+  .landing-hero p {
+    font-size: var(--text-base) !important;
+  }
+  /* CTA buttons stack vertically */
+  .landing-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: var(--space-3) !important;
+  }
+  .landing-cta-row a {
+    text-align: center;
+    justify-content: center;
+  }
+  /* Feature grid: single column */
+  .landing-features {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-8) !important;
+  }
+  .landing-section {
+    padding: var(--space-12) 0 !important;
+  }
+}
+
+/* ── Goal Dashboard ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* 2-col grid → single col */
+  .goal-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-6) !important;
+  }
+  /* Stats row: wrap */
+  .goal-stats-row {
+    flex-wrap: wrap !important;
+    gap: var(--space-3) !important;
+  }
+  .goal-stat-box {
+    flex: 1 1 140px !important;
+    text-align: left !important;
+  }
+  /* Goal title smaller */
+  .goal-title {
+    font-size: var(--text-xl) !important;
+  }
+}
+
+/* ── Task Detail Page ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  .task-header-row {
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+  }
+  .task-meta {
+    text-align: left !important;
+  }
+  /* Status action buttons: full width */
+  .task-status-actions {
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+  }
+  .task-status-actions button,
+  .task-status-actions a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Forms (Goal Input, Career) ───────────────────────────── */
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column !important;
+    gap: var(--space-4) !important;
+  }
+  .form-row > * {
+    width: 100% !important;
+  }
+  /* Date + hours side-by-side → stack */
+  .form-date-hours {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Career Results ───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .role-card-header {
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+  }
+  .role-card-actions {
+    width: 100% !important;
+  }
+  .role-card-actions button,
+  .role-card-actions a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Re-plan View ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .replan-actions {
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+  }
+  .replan-actions button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .diff-row {
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+  }
+}
+
+/* ── NBA (Next Best Action) Panel ─────────────────────────── */
+@media (max-width: 640px) {
+  .nba-panel {
+    padding: var(--space-4) !important;
+  }
+  .nba-actions {
+    flex-direction: column !important;
+    gap: var(--space-2) !important;
+  }
+  .nba-actions button,
+  .nba-actions a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Milestone list ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .milestone-item {
+    padding: var(--space-3) !important;
+  }
+}
+
+/* ── Task cards ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .task-card {
+    padding: var(--space-3) var(--space-4) !important;
+  }
+  .task-card-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: var(--space-2) !important;
+  }
+}
+
+/* ── Infeasible Options ───────────────────────────────────── */
+@media (max-width: 640px) {
+  .infeasible-options {
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+  }
+  .infeasible-options > * {
+    width: 100% !important;
+  }
+}
+
+/* ── Spacing adjustments on mobile ────────────────────────── */
+@media (max-width: 768px) {
+  .page-pad { padding: var(--space-6) 0 var(--space-12) !important; }
+  .section-gap { gap: var(--space-5) !important; }
+}
+@media (max-width: 480px) {
+  .page-pad { padding: var(--space-4) 0 var(--space-10) !important; }
+}
