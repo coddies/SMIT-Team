@@ -67,7 +67,7 @@ def get_settings() -> Settings:
     pepper = os.getenv("SESSION_TOKEN_PEPPER", "").strip()
     if not pepper:
         raise RuntimeError("SESSION_TOKEN_PEPPER is required")
-    origins = tuple(x.strip() for x in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",") if x.strip())
+    origins = tuple(x.strip().rstrip("/") for x in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",") if x.strip())
     if not origins or "*" in origins:
         raise RuntimeError("CORS_ORIGINS must contain exact origins and cannot include '*'")
     if os.getenv("ENV", "development").lower() == "production" and "CORS_ORIGINS" not in os.environ:

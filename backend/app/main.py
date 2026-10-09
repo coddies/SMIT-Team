@@ -86,8 +86,8 @@ app.add_middleware(RequestBodyLimitMiddleware, max_bytes=settings.request_body_m
 app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(RequestContextMiddleware)
 app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins), allow_credentials=False,
-                   allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
-                   allow_headers=["Authorization", "Content-Type", "X-Request-ID", "Idempotency-Key"])
+                   allow_methods=["*"],
+                   allow_headers=["*"])
 app.include_router(session.router)
 app.include_router(health.router)
 app.include_router(goals.router)
